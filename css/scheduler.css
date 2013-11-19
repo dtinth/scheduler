@@ -131,7 +131,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
   text-decoration: none;
 }
 .subject-pick h3 a i {
-  opacity: 0;
+  opacity: 0.25;
+  font-size: 85%;
 }
 .subject-pick h3 a:hover i {
   opacity: 1;
