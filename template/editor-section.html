@@ -1,16 +1,31 @@
 <div class="panel panel-default" ng-controller="SectionController">
   <div class="panel-heading">
-    <h3 class="panel-title">Section {{section.sectionNo}}</h3>
+    <h3 class="panel-title">
+      
+      <!-- delete section button -->
+      <a class="pull-right delete-button" href="javascript://"><i class="glyphicon glyphicon-remove"></i></a>
+      
+      <!-- show section name -->
+      Section {{section.sectionNo}}
+      
+    </h3>
   </div>
+  
   <div class="panel-body">
+    
+    <!-- section no -->
     <div class="form-group">
       <label class="col-sm-4 control-label">Section No.</label>
       <div class="col-sm-3"><input ng-model="section.sectionNo" type="text" class="form-control"></div>
     </div>
+    
+    <!-- section instructor -->
     <div class="form-group">
       <label class="col-sm-4 control-label">Instructor</label>
       <div class="col-sm-6"><input ng-model="section.instructor" type="text" class="form-control"></div>
     </div>
+    
+    <!-- period table -->
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -23,6 +38,8 @@
         </tr>
       </thead>
       <tbody>
+        
+        <!-- period row -->
         <tr ng-repeat="period in section.periods">
           <td>
             <select class="form-control" ng-model="period.day">
@@ -42,9 +59,11 @@
             <input type="text" ng-model="period.place" class="form-control">
           </td>
           <td>
+            <!-- remove period button -->
             <button class="btn btn-danger" ng-click="removePeriod(period)" ng-disabled="section.periods.length == 1"><i class="glyphicon glyphicon-remove"></i></button>
           </td>
         </tr>
+        
       </tbody>
     </table>
   </div>

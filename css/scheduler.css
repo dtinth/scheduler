@@ -182,3 +182,40 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
   border-color: #1f9147;
   color: white;
 }
+
+.period-editor {
+  width: 12em;
+  position: relative;
+}
+.period-editor .arrow {
+  position: absolute;
+  left: 5em; right: 5em;
+  top: 5px; bottom: 0; text-align: center;
+}
+.period-editor input {
+  text-align: center;
+}
+.period-editor .start {
+  width: 5em;
+  position: relative;
+}
+.period-editor .finish {
+  width: 5em;
+  position: absolute;
+  right: 0; top: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
