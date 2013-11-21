@@ -86,21 +86,14 @@
     <div class="subjects">
       
       <div class="subject-pick" ng-repeat="course in courses">
-        <h3><a href="">Database
+        <h3><a href="">{{course.courseName}}
           <i class="glyphicon glyphicon-pencil"></i>
         </a></h3>
+
         <ul class="clearfix">
-          <li><a href="#">450</a></li>
-          <li><a href="#" class="active">451</a></li>
-          <li><a href="#">452</a></li>
-          <li><a href="#">453</a></li>
-          <li><a href="#">451</a></li>
-          <li><a href="#">452</a></li>
-          <li><a href="#">453</a></li>
-          <li><a href="#">451</a></li>
-          <li><a href="#">452</a></li>
-          <li><a href="#">453</a></li>
+          <li ng-repeat="section in course.sections"><a href="#">{{section.sectionNo}}</a></li>
         </ul>
+
       </div>
       
     </div>
