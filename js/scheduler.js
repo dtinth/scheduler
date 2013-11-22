@@ -1,6 +1,12 @@
 
 angular.module('scheduler', ['scheduler.editor'])
   .controller('MainController', function($scope) {
+      
+    $scope.editCourse = function(course) {
+      $scope.data = course
+      $('#edit-modal').modal('show')
+    }
+      
     $scope.courses = [
       {
         courseId: '01204111',

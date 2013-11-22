@@ -86,7 +86,7 @@
     <div class="subjects">
       
       <div class="subject-pick" ng-repeat="course in courses">
-        <h3><a href="">{{course.courseName}}
+        <h3><a href="javascript://" ng-click="editCourse(course)">{{course.courseName}}
           <i class="glyphicon glyphicon-pencil"></i>
         </a></h3>
 
@@ -103,7 +103,7 @@
     
   </div>
   
-  <div class="modal fade">
+  <div class="modal fade" id="edit-modal">
     <ng-include src="'template/editor.html'"></ng-include>
   </div>
   

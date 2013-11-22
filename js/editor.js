@@ -9,6 +9,9 @@ angular.module('scheduler.editor', ['ui.utils'])
     $scope.removePeriod = function(period) {
       $scope.section.periods.splice($scope.section.periods.indexOf(period), 1)
     }
+    $scope.removeSection = function(section) {
+      $scope.data.sections.splice($scope.data.sections.indexOf(section), 1)
+    }
   })
   .controller('EditorController', function($scope) {
     $scope.addSection = function() {
