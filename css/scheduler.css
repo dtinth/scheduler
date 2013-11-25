@@ -119,7 +119,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
 
 .subjects {
   position: absolute;
-  top: 36px; bottom: 40px; left: 0; right: 0;
+  top: 36px; bottom: 44px; left: 0; right: 0;
+  overflow: auto;
+  padding-bottom: 16px;
 }
 
 .subject-pick h3 {
