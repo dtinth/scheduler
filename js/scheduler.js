@@ -6,6 +6,21 @@ angular.module('scheduler', ['scheduler.editor'])
       $scope.data = course
       $('#edit-modal').modal('show')
     }
+    
+    $scope.addCourse = function() {
+      $scope.courses.push({
+      courseId: '01204111',
+      courseName: 'Computers and Programming',
+      sections: [
+        {
+          sectionNo: '450',
+          instructor: 'Tyghe',
+          periods: [
+            { day: 1, start: '13:00', finish: '14:30', place: '17201' },
+            { day: 5, start: '13:30', finish: '15:00', place: '0503' }
+          ]
+        }]})
+    }
       
     $scope.courses = [
       {
