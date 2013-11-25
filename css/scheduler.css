@@ -205,6 +205,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
   right: 0; top: 0;
 }
 
+.modal-footer .left{
+  position:absolute;
+}
+
 
 
 

@@ -8,17 +8,16 @@ angular.module('scheduler', ['scheduler.editor'])
     }
     
     $scope.addCourse = function() {
+      //$scope.courses.push({
       $scope.courses.push({
-      courseId: '01204111',
-      courseName: 'Computers and Programming',
+      courseId: '',
+      courseName: 'New Course',
       sections: [
         {
-          sectionNo: '450',
-          instructor: 'Tyghe',
+          sectionNo: '',
+          instructor: '',
           periods: [
-            { day: 1, start: '13:00', finish: '14:30', place: '17201' },
-            { day: 5, start: '13:30', finish: '15:00', place: '0503' }
-          ]
+            { day: 1, start: '', finish: '', place: '' }          ]
         }]})
     }
       
