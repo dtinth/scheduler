@@ -18,6 +18,7 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias officia facilis libero cumque vel culpa nobis eius ullam voluptatibus incidunt! Est libero eum aliquid repellat tempora eaque laborum asperiores corporis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, quod quaerat nihil. Doloribus, eos aut maiores eaque facere ab pariatur id. Fugiat cum unde libero ipsa natus at optio saepe. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, hic, quo repellendus at repudiandae qui dolores quasi accusamus iste dolore repellat quos doloremque vitae iure quibusdam quisquam praesentium laudantium natus.
     </div>
     
+    <!-- older Table
     <div class="info-table">
       <table class="table table-bordered">
         <thead>
@@ -68,6 +69,41 @@
               Doko
             </td>
           </tr>
+        </tbody>
+      </table>
+    </div>
+    -->
+    
+    <div class="info-table">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Subject [Section]</th>
+            <th>Time</th>
+            <th>Place</th>
+          </tr>
+        </thead>
+        <tbody  ng-repeat="course in courses">
+          <tr>
+            <td rowspan="{{course.sections.length+1}}">
+              01234567 <strong>{{course.courseName}}</strong> [{{course.sections[0].sectionNo}}]
+            </td>
+            <td>
+              {{date(course.sections[0].periods[0].day)}} {{course.sections[0].periods[0].start}} - {{course.sections[0].periods[0].finish}}
+            </td>
+            <td>
+              {{course.sections[0].periods[0].place}}
+            </td>
+          </tr>
+          <tr  ng-repeat="period in course.sections[0].periods" ng-show="!$first">
+            <td>
+              {{date(period.day)}} {{period.start}} - {{period.finish}}
+            </td>
+            <td>
+              {{period.place}}
+            </td>
+          </tr>
+          
         </tbody>
       </table>
     </div>
