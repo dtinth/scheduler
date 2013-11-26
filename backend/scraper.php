@@ -48,14 +48,21 @@ class ScheduleScraper {
           //         no of accepted students, no of students enrolled, ... ]
           
           // enter information for group
+
           $currentGroup->sectionNo = $tds->eq(2)->text();
 
-          $currentGroup->periods[] = $this->parsePeriod($tds->eq(3)->text(), $tds->eq(4)->text());
+		  // Check period
+	   	  if(strlen($tds->eq(3)->text()) !== 20 && strlen($tds->eq(4)->text(4)) != 2)
+            $currentGroup->periods[] = $this->parsePeriod($tds->eq(3)->text(), $tds->eq(4)->text());
+
+		  $currentGroup->studentsAccepted = $tds->eq(6)->text();
+		  $currentGroup->studentsEnrolled = $tds->eq(7)->text();
+
 
         } else if ($currentGroup !== null) {
-
           // tds = [ date-time, location ]
-          
+		
+          $currentGroup->periods[] = $this->parsePeriod($tds->eq(0)->text(), $tds->eq(1)->text());
         }
       }
     );

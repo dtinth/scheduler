@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6cbd35448467a96020431422b192b067",
+    "hash": "3908e8febefd889f6a7b34520392b2dd",
     "packages": [
         {
             "name": "symfony/css-selector",
