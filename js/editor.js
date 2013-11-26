@@ -23,6 +23,9 @@ angular.module('scheduler.editor', ['ui.utils'])
         ]
       })
     }
+    $scope.removeCourse = function(course) {
+      $scope.courses.splice($scope.courses.indexOf(course),1)
+    }
   })
   .controller('EditorTestController', function($scope) {
     $scope.data = {
