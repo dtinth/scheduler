@@ -25,14 +25,27 @@ angular.module('scheduler', ['scheduler.editor'])
       $scope.editCourse(newCourse)
     }
     
+    $scope.activeSections = function(sections) {
+      return sections.filter(function(section) {
+        return section.selected
+      })
+    }
+    
     $scope.date = function(day){
-      if(day==0)return "Sunday"
-      if(day==1)return "Monday"
-      if(day==2)return "Tuesday"
-      if(day==3)return "Wednesday"
-      if(day==4)return "Thursday"
-      if(day==5)return "Friday"
-      if(day==6)return "Saturday"
+      return ["Sunday", "Monday", "Tuesday",
+              "Wednesday", "Thursday", "Friday", "Saturday"][day]
+    }
+    
+    $scope.time = function(time) {
+      return ('' + time).replace(/[^\d]/g, '').replace(/^(\d\d)/, '$1:')
+    }
+    
+    $scope.saveSchedule = function() {
+      // TODO: Use ajax.
+      var value = JSON.stringify($scope.courses)
+      var form = $('<form action="backend/save.php" method="post"></form>').appendTo('body')
+      var input = $('<input type="hidden" name="data">').val(value).appendTo(form)
+      form[0].submit()
     }
       
     $scope.courses = [
@@ -54,7 +67,8 @@ angular.module('scheduler', ['scheduler.editor'])
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '0202' },
               { day: 5, start: '13:30', finish: '15:00', place: '0203' }
-            ]
+            ],
+            selected: true
           }
         ]
       },
@@ -106,7 +120,8 @@ angular.module('scheduler', ['scheduler.editor'])
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '0202' },
               { day: 5, start: '13:30', finish: '15:00', place: '0203' }
-            ]
+            ],
+            selected: true
           }
         ]
       }

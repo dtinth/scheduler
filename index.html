@@ -15,64 +15,17 @@
   
   <div id="main">
     <div id="schedule">
+      
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias officia facilis libero cumque vel culpa nobis eius ullam voluptatibus incidunt! Est libero eum aliquid repellat tempora eaque laborum asperiores corporis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, quod quaerat nihil. Doloribus, eos aut maiores eaque facere ab pariatur id. Fugiat cum unde libero ipsa natus at optio saepe. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, hic, quo repellendus at repudiandae qui dolores quasi accusamus iste dolore repellat quos doloremque vitae iure quibusdam quisquam praesentium laudantium natus.
+      
+      <div class="buttons">
+        <button class="btn btn-lg btn-primary" ng-click="saveSchedule()">
+          Save Schedule
+        </button>
+      </div>
+    
     </div>
     
-    <!-- older Table
-    <div class="info-table">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Subject [Section]</th>
-            <th>Time</th>
-            <th>Place</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td rowspan="2">
-              01234567 <strong>Database Systems</strong> [450]
-            </td>
-            <td>
-              Monday 12:00 - 13:00
-            </td>
-            <td>
-              That
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Friday 14:00 - 16:00
-            </td>
-            <td>
-              Doko
-            </td>
-          </tr>
-          
-          
-          <tr>
-            <td rowspan="2">
-              01234567 <strong>Database Systems</strong> [450]
-            </td>
-            <td>
-              Monday 12:00 - 13:00
-            </td>
-            <td>
-              That
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Friday 14:00 - 16:00
-            </td>
-            <td>
-              Doko
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    -->
     
     <div class="info-table">
       <table class="table table-bordered">
@@ -83,27 +36,26 @@
             <th>Place</th>
           </tr>
         </thead>
-        <tbody  ng-repeat="course in courses">
-          <tr>
-            <td rowspan="{{course.sections.length+1}}">
-              01234567 <strong>{{course.courseName}}</strong> [{{course.sections[0].sectionNo}}]
+        <tbody ng-repeat="course in courses">
+          <tr ng-repeat-start="section in activeSections(course.sections)">
+            <td rowspan="{{section.periods.length}}">
+              01234567 <strong>{{course.courseName}}</strong> [{{section.sectionNo}}]
             </td>
             <td>
-              {{date(course.sections[0].periods[0].day)}} {{course.sections[0].periods[0].start}} - {{course.sections[0].periods[0].finish}}
+              {{date(section.periods[0].day)}} {{time(section.periods[0].start)}} - {{time(section.periods[0].finish)}}
             </td>
             <td>
-              {{course.sections[0].periods[0].place}}
+              {{section.periods[0].place}}
             </td>
           </tr>
-          <tr  ng-repeat="period in course.sections[0].periods" ng-show="!$first">
+          <tr ng-repeat="period in section.periods" ng-if="!$first" ng-repeat-end>
             <td>
-              {{date(period.day)}} {{period.start}} - {{period.finish}}
+              {{date(period.day)}} {{time(period.start)}} - {{time(period.finish)}}
             </td>
             <td>
               {{period.place}}
             </td>
           </tr>
-          
         </tbody>
       </table>
     </div>
@@ -127,7 +79,13 @@
         </a></h3>
 
         <ul class="clearfix">
-          <li ng-repeat="section in course.sections"><a href="#">{{section.sectionNo}}</a></li>
+          <li
+            ng-repeat="section in course.sections"><a
+            href="javascript://"
+            ng-mouseenter="section.preview = true"
+            ng-mouseleave="section.preview = false"
+            ng-class="{ active: !!section.selected }"
+            ng-click="section.selected = !section.selected">{{section.sectionNo}}</a></li>
         </ul>
 
       </div>

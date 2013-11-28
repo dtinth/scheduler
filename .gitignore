@@ -1,5 +1,6 @@
 .DS_Store
 /backend/vendor/
+database.local.php
 
 
 
