@@ -5,6 +5,8 @@ require 'includes/database.php';
 $json = $_POST['data'];
 $courses = json_decode($json);
 
+// print_r($courses); // when you want to debug
+
 if (!$courses) {
   die("NO! WHAT DID YOU SEND ME???? NOOOOO!!!!!!! NAAAHHHHHLLLLL!!!!");
 }
