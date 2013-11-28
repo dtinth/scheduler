@@ -1,6 +1,7 @@
 {
     "require": {
         "symfony/dom-crawler": "2.5.*@dev",
-        "symfony/css-selector": "2.5.*@dev"
+        "symfony/css-selector": "2.5.*@dev",
+        "facebook/php-sdk" : "*"
     }
 }
