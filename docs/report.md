@@ -1,17 +1,6 @@
-Scheduler<br>Database Project Report
-====================================
 
-1. Members
-----------
-
- 1. Thai Pangsakulyanont
- 2. Khanet Krongkitichu
- 3. Lattasit Haritaworn
-
-
-
-2. Background and Opportunity
------------------------------
+Background and Opportunity
+==========================
 
 Each semester,
 we need to plan on which courses to register in the next semester.
@@ -34,8 +23,8 @@ This opens an opportunity for us to create a solution
 for this problem—a study scheduling tool that will help alleviate all these problems.
 
 
-3. Objectives and Goals
------------------------
+Objectives and Goals
+====================
 
 Our goal is to create:
 
@@ -52,8 +41,8 @@ our software will have the following characteristics:
 * System can create interesting report (which data will be anonymous).
 
 
-4. Benefits
------------
+Benefits
+========
 
 The benefits are obvious: College students, especially KU students,
 will be able to use this tool to
@@ -62,8 +51,8 @@ will be able to use this tool to
 * plan their study schedule more effectively.
 
 
-5. Software Tools
------------------
+Software Tools
+==============
 
 | Tool | Purpose |
 | ---- | ------- |
@@ -76,24 +65,25 @@ will be able to use this tool to
 
 
 
-6. ER Diagram
--------------
+ER Diagram
+==========
 
 ![ER Diagram](er-diagram.png)
 
 
 
-7. Development
---------------
+Development
+===========
 
-### Data Dictionary
+Data Dictionary
+---------------
 
 TBA
 
 
 
-8. Example Queries
-------------------
+Example Queries
+===============
 
 
 
