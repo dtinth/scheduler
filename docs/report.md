@@ -59,9 +59,11 @@ Software Tools
 | draw.io | ER Diagramming |
 | MySQL   | Database Management System |
 | PHP     | Scripting language on the server |
+| phpMyAdmin | Database development and administration tool |
 | AngularJS | Client-side application framework |
 | DomCrawler | Scraping the registration website's timetable |
 | Facebook PHP SDK | User Authentication and Login with Facebook |
+| pdfLaTeX<br>Pygments<br>Redcloth<br>Pandoc | Report authoring tools |
 
 
 
@@ -85,7 +87,10 @@ TBA
 Example Queries
 ===============
 
-
+```sql
+SELECT 1 FROM test
+WHERE "a" = "b"; DROP TABLE test
+```
 
 
 

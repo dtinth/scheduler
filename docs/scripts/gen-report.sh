@@ -6,7 +6,7 @@ rm -rf gen
 mkdir -p gen
 
 cat report.md \
-  | ruby -e 'require "rdiscount" and puts RDiscount.new($stdin.read).to_html' \
+  | ruby scripts/markdown-to-html.rb \
   | pandoc -f html -t latex \
   | ruby scripts/postprocess-tex.rb \
   > gen/report.tex
