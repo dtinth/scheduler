@@ -39,7 +39,7 @@
         <tbody ng-repeat="course in courses">
           <tr ng-repeat-start="section in activeSections(course.sections)">
             <td rowspan="{{section.periods.length}}">
-              01234567 <strong>{{course.courseName}}</strong> [{{section.sectionNo}}]
+              {{course.courseId}} <strong>{{course.courseName}}</strong> [{{section.sectionNo}}]
             </td>
             <td>
               {{date(section.periods[0].day)}} {{time(section.periods[0].start)}} - {{time(section.periods[0].finish)}}

@@ -11,10 +11,11 @@ angular.module('scheduler', ['scheduler.editor'])
       var newCourse = {
         courseId: '',
         courseName: 'New Course',
+        lecCredit:'1', labCredit:'1',
         sections: [
           {
             type:'0',
-            sectionNo: '1', credit:'1',
+            sectionNo: '1',
             instructor: '',
             periods: [
               { day: 1, start: '', finish: '', place: '' }
@@ -53,9 +54,10 @@ angular.module('scheduler', ['scheduler.editor'])
       {
         courseId: '01204111',
         courseName: 'Computers and Programming',
+        lecCredit:'1', labCredit:'2',
         sections: [
           {
-            sectionNo: '450', credit:'1',
+            sectionNo: '450',
             type:'0',
             instructor: 'Tyghe',
             periods: [
@@ -78,9 +80,10 @@ angular.module('scheduler', ['scheduler.editor'])
       {
         courseId: '01204112',
         courseName: 'Computers and Programming XXX',
+        lecCredit:'1', labCredit:'2',
         sections: [
           {
-            sectionNo: '450', credit:'1',
+            sectionNo: '450',
             type:'0',
             instructor: 'Tyghe',
             periods: [
@@ -89,7 +92,7 @@ angular.module('scheduler', ['scheduler.editor'])
             ]
           },
           {
-            sectionNo: '451', credit:'1',
+            sectionNo: '451',
             type:'1',
             instructor: 'Siriporn',
             periods: [
@@ -102,9 +105,10 @@ angular.module('scheduler', ['scheduler.editor'])
       {
         courseId: '01204113',
         courseName: 'Computers and Programming YYY',
+        lecCredit:'1', labCredit:'2',
         sections: [
           {
-            sectionNo: '450', credit:'1',
+            sectionNo: '450',
             type:'0',
             instructor: 'Tyghe',
             periods: [
@@ -113,7 +117,7 @@ angular.module('scheduler', ['scheduler.editor'])
             ]
           },
           {
-            sectionNo: '451', credit:'1',
+            sectionNo: '451',
             type:'1',
             instructor: 'Siriporn',
             periods: [
@@ -122,7 +126,7 @@ angular.module('scheduler', ['scheduler.editor'])
             ]
           },
           {
-            sectionNo: '452', credit:'3',
+            sectionNo: '452',
             type:'1',
             instructor: 'Siriporn',
             periods: [
