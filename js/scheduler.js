@@ -1,7 +1,55 @@
 
-angular.module('scheduler', ['scheduler.editor'])
-  .controller('MainController', function($scope) {
-      
+angular.module('scheduler', ['scheduler.editor', 'ezfb'])
+  .config(function ($FBProvider) {
+    $FBProvider.setInitParams({
+      appId: '239504039549087',
+      status: true,
+      cookie: true
+    })
+  })
+  .service('facebook', function($FB) {
+    
+    var facebook = { }
+    
+    facebook.loggedIn = false
+    
+    facebook.login = function() {
+      $FB.login()
+    }
+    
+    facebook.logout = function() {
+      $FB.logout()
+    }
+    
+    function checkLoginStatus() {
+      $FB.getLoginStatus().then(function(response) {
+        var auth = response.authResponse
+        if (!auth) {
+          facebook.loggedIn = false
+          facebook.auth = null
+          facebook.me = null
+        } else {
+          facebook.auth = auth
+          $FB.api('/me').then(function(me) {
+            facebook.me = me
+            facebook.loggedIn = true
+          })
+        }
+      })
+    }
+    
+    checkLoginStatus()
+    $FB.Event.subscribe('auth.authResponseChange', function() {
+      checkLoginStatus()
+    })
+    
+    return facebook
+    
+  })
+  .controller('MainController', function($scope, facebook) {
+    
+    $scope.facebook = facebook
+    
     $scope.editCourse = function(course) {
       $scope.data = course
       $('#edit-modal').modal('show')
@@ -43,11 +91,7 @@ angular.module('scheduler', ['scheduler.editor'])
     }
     
     $scope.saveSchedule = function() {
-      // TODO: Use ajax.
-      var value = JSON.stringify($scope.courses)
-      var form = $('<form action="backend/save.php" method="post"></form>').appendTo('body')
-      var input = $('<input type="hidden" name="data">').val(value).appendTo(form)
-      form[0].submit()
+      $('#save-modal').modal('show')
     }
       
     $scope.courses = [
@@ -138,4 +182,24 @@ angular.module('scheduler', ['scheduler.editor'])
         ]
       }
     ]
+  })
+  .controller('SaveController', function($scope, $http) {
+    
+    $scope.info = { name: '' }
+    
+    $scope.save = function() {
+      var data = { name: $scope.info.name, courses: $scope.courses }
+      $scope.saving = true
+      $http.post('backend/save.php', data)
+        .success(function(result) {
+          location.replace('?id=' + result.key)
+        })
+        .error(function() {
+          alert('Cannot save schedule! Sorry')
+        })
+        .finally(function() {
+          $scope.saving = false
+        })
+    }
+    
   })

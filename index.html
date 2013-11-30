@@ -14,6 +14,7 @@
   </div>
   
   <div id="main">
+  
     <div id="schedule">
       
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias officia facilis libero cumque vel culpa nobis eius ullam voluptatibus incidunt! Est libero eum aliquid repellat tempora eaque laborum asperiores corporis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, quod quaerat nihil. Doloribus, eos aut maiores eaque facere ab pariatur id. Fugiat cum unde libero ipsa natus at optio saepe. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, hic, quo repellendus at repudiandae qui dolores quasi accusamus iste dolore repellat quos doloremque vitae iure quibusdam quisquam praesentium laudantium natus.
@@ -102,8 +103,56 @@
     <ng-include src="'template/editor.html'"></ng-include>
   </div>
   
+  <div class="modal fade" id="save-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="form-horizontal" ng-controller="SaveController" name="saveForm">
+      
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Save Schedule</h4>
+          </div>
+          
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Schedule Owner</label>
+              <div class="col-sm-6">
+                <div ng-show="!facebook.loggedIn">
+                  <p><button type="button" class="btn btn-primary" ng-click="facebook.login()">Sign in with Facebook</button></p>
+                  Please login with Facebook. Otherwise, your schedule may be deleted after 15 days.
+                </div>
+                <div ng-show="facebook.loggedIn">
+                  <p class="form-control-static">{{facebook.me.name}} (<a href="javascript://" ng-click="facebook.logout()">Logout?</a>)</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="save-schedule-name" class="col-sm-4 control-label">Schedule Name</label>
+              <div class="col-sm-6"><input id="save-schedule-name" ng-model="info.name" type="text" class="form-control" required></div>
+            </div>
+          </div>
+          
+          <div class="modal-footer">
+            <div ng-show="!saving">
+              <button type="button" class="btn btn-success" ng-click="save()" ng-disabled="!saveForm.$valid">Save Schedule</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+            <div ng-show="saving">
+              Saving Your Schedule...
+            </div>
+          </div>
+        
+        </form>
+    
+      </div>
+    </div>
+  
+  </div>
+    
   <script src="vendor/jquery/jquery-2.0.3.min.js"></script>
   <script src="vendor/angular/angular.min.js"></script>
+  <script src="vendor/angular-easyfb/angular-easyfb.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
   
   <script src="js/scheduler.js"></script>

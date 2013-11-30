@@ -2,6 +2,7 @@
 /backend/vendor/
 /docs/gen/
 database.local.php
+facebook.local.php
 
 
 

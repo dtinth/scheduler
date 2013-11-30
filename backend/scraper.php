@@ -2,7 +2,7 @@
 
 use Symfony\Component\DomCrawler\Crawler;
 
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 class Period {
 

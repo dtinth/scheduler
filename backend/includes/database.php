@@ -1,10 +1,32 @@
 <?php
 
-require dirname(__FILE__) . '/database.local.php';
+require_once dirname(__FILE__) . '/database.local.php';
 
 try {
-    $db = new PDO("mysql:host=localhost;dbname=zp2925_schedule", DB_USER, DB_PASS);
+  $db = new PDO("mysql:host=localhost;dbname=zp2925_schedule", DB_USER, DB_PASS);
 } catch(PDOException $e) {
-    die($e->getMessage());
+  die($e->getMessage());
+}
+
+class DbUtil {
+  
+  static function execute($statement, $what = 'execute SQL') {
+    global $db;
+    if (!$statement->execute()) {
+      throw new Exception("Cannot $what! " . $statement->errorInfo()[2]);
+    }
+    return $db->lastInsertId();
+  }
+  
+  static function select($statement, $bindings=array()) {
+    global $db;
+    $statement = $db->prepare($statement);
+    foreach ($bindings as $key => $value) {
+      $statement->bindValue($key, $value);
+    }
+    self::execute($statement);
+    return $statement->fetchAll();
+  }
+  
 }
 
