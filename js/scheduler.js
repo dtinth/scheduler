@@ -13,7 +13,8 @@ angular.module('scheduler', ['scheduler.editor'])
         courseName: 'New Course',
         sections: [
           {
-            sectionNo: '1',
+            type:'0',
+            sectionNo: '1', credit:'1',
             instructor: '',
             periods: [
               { day: 1, start: '', finish: '', place: '' }
@@ -54,7 +55,8 @@ angular.module('scheduler', ['scheduler.editor'])
         courseName: 'Computers and Programming',
         sections: [
           {
-            sectionNo: '450',
+            sectionNo: '450', credit:'1',
+            type:'0',
             instructor: 'Tyghe',
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '17201' },
@@ -62,7 +64,8 @@ angular.module('scheduler', ['scheduler.editor'])
             ]
           },
           {
-            sectionNo: '451',
+            sectionNo: '451', credit:'1',
+            type:'1',
             instructor: 'Siriporn',
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '0202' },
@@ -77,7 +80,8 @@ angular.module('scheduler', ['scheduler.editor'])
         courseName: 'Computers and Programming XXX',
         sections: [
           {
-            sectionNo: '450',
+            sectionNo: '450', credit:'1',
+            type:'0',
             instructor: 'Tyghe',
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '17201' },
@@ -85,7 +89,8 @@ angular.module('scheduler', ['scheduler.editor'])
             ]
           },
           {
-            sectionNo: '451',
+            sectionNo: '451', credit:'1',
+            type:'1',
             instructor: 'Siriporn',
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '0202' },
@@ -99,7 +104,8 @@ angular.module('scheduler', ['scheduler.editor'])
         courseName: 'Computers and Programming YYY',
         sections: [
           {
-            sectionNo: '450',
+            sectionNo: '450', credit:'1',
+            type:'0',
             instructor: 'Tyghe',
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '17201' },
@@ -107,7 +113,8 @@ angular.module('scheduler', ['scheduler.editor'])
             ]
           },
           {
-            sectionNo: '451',
+            sectionNo: '451', credit:'1',
+            type:'1',
             instructor: 'Siriporn',
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '0202' },
@@ -115,7 +122,8 @@ angular.module('scheduler', ['scheduler.editor'])
             ]
           },
           {
-            sectionNo: '452',
+            sectionNo: '452', credit:'3',
+            type:'1',
             instructor: 'Siriporn',
             periods: [
               { day: 1, start: '13:00', finish: '14:30', place: '0202' },

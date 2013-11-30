@@ -15,15 +15,30 @@
     
     <!-- section no -->
     <div class="form-group">
-      <label class="col-sm-4 control-label">Section No.</label>
-      <div class="col-sm-3"><input ng-model="section.sectionNo" type="text" class="form-control"></div>
+      <div>
+        <label class="col-sm-4 control-label">Section No.</label>      
+        <div class="col-sm-2"><input ng-model="section.sectionNo" type="text" class="form-control"></div>
+        <label class="col-sm-2 control-label">Credit</label>      
+        <div class="col-sm-2"><input ng-model="section.credit" type="text" class="form-control"></div>
+      </div>
     </div>
     
+    
+    <!-- section type -->
+    <div class="form-group">
+      <label class="col-sm-4 control-label">Type</label>
+      <div class="col-sm-6">
+      <select class="form-control" ng-model="section.type">
+        <option value="0">Lecture</option>
+        <option value="1">Laboratory</option>
+      </select>
+      </div>
+    </div>
     <!-- section instructor -->
     <div class="form-group">
       <label class="col-sm-4 control-label">Instructor</label>
       <div class="col-sm-6"><input ng-model="section.instructor" type="text" class="form-control"></div>
-    </div>
+    </div>    
     
     <!-- period table -->
     <table class="table table-bordered">

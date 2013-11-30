@@ -16,7 +16,8 @@ angular.module('scheduler.editor', ['ui.utils'])
   .controller('EditorController', function($scope) {
     $scope.addSection = function() {
       $scope.data.sections.push({
-        sectionNo: '',
+        sectionNo: '1', credit:'1',
+        type:'0',
         instructor: '',
         periods: [
           { day: 1, start: '', finish: '', place: '' }
@@ -33,7 +34,8 @@ angular.module('scheduler.editor', ['ui.utils'])
       courseName: 'Computers and Programming',
       sections: [
         {
-          sectionNo: '450',
+          sectionNo: '450', credit:'1',
+          type:'0',
           instructor: 'Tyghe',
           periods: [
             { day: 1, start: '13:00', finish: '14:30', place: '17201' },
@@ -41,7 +43,8 @@ angular.module('scheduler.editor', ['ui.utils'])
           ]
         },
         {
-          sectionNo: '451',
+          sectionNo: '451', credit:'1',
+          type:'1',
           instructor: 'Siriporn',
           periods: [
             { day: 1, start: '13:00', finish: '14:30', place: '0202' },
