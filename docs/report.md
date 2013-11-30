@@ -1,13 +1,13 @@
-
 Scheduler<br>Database Project Report
 ====================================
 
 1. Members
 ----------
 
-1. Thai Pangsakulyanont
-2. Khanet Krongkitichu
-3. Lattasit Haritaworn
+ 1. Thai Pangsakulyanont
+ 2. Khanet Krongkitichu
+ 3. Lattasit Haritaworn
+
 
 
 2. Background and Opportunity
