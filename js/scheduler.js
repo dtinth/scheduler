@@ -1,5 +1,5 @@
 
-angular.module('scheduler', ['scheduler.editor', 'ezfb'])
+angular.module('scheduler', ['scheduler.editor', 'scheduler.import',  'scheduler.view', 'ezfb'])
   .config(function ($FBProvider) {
     $FBProvider.setInitParams({
       appId: '239504039549087',
@@ -46,7 +46,7 @@ angular.module('scheduler', ['scheduler.editor', 'ezfb'])
     return facebook
     
   })
-  .controller('MainController', function($scope, facebook) {
+  .controller('MainController', function($scope, facebook, schedules) {
     
     $scope.facebook = facebook
     
@@ -75,113 +75,27 @@ angular.module('scheduler', ['scheduler.editor', 'ezfb'])
       $scope.editCourse(newCourse)
     }
     
-    $scope.activeSections = function(sections) {
-      return sections.filter(function(section) {
-        return section.selected
-      })
-    }
-    
-    $scope.date = function(day){
-      return ["Sunday", "Monday", "Tuesday",
-              "Wednesday", "Thursday", "Friday", "Saturday"][day]
-    }
-    
-    $scope.time = function(time) {
-      return ('' + time).replace(/[^\d]/g, '').replace(/^(\d\d)/, '$1:')
-    }
-    
     $scope.saveSchedule = function() {
       $('#save-modal').modal('show')
     }
+    
+    $scope.importFromKU = function() {
+      $('#ku-import-modal').modal('show')
+    }
+    
+    $scope.importTimetable = function(timetable) {
+      $('#ku-import-modal').modal('hide')
+      $scope.courses.push(timetable)
+    }
       
-    $scope.courses = [
-      {
-        courseId: '01204111',
-        courseName: 'Computers and Programming',
-        lecCredit:'1', labCredit:'2',
-        sections: [
-          {
-            sectionNo: '450',
-            type:'0',
-            instructor: 'Tyghe',
-            periods: [
-              { day: 1, start: '13:00', finish: '14:30', place: '17201' },
-              { day: 5, start: '13:30', finish: '15:00', place: '0503' }
-            ]
-          },
-          {
-            sectionNo: '451', credit:'1',
-            type:'1',
-            instructor: 'Siriporn',
-            periods: [
-              { day: 1, start: '13:00', finish: '14:30', place: '0202' },
-              { day: 5, start: '13:30', finish: '15:00', place: '0203' }
-            ],
-            selected: true
-          }
-        ]
-      },
-      {
-        courseId: '01204112',
-        courseName: 'Computers and Programming XXX',
-        lecCredit:'1', labCredit:'2',
-        sections: [
-          {
-            sectionNo: '450',
-            type:'0',
-            instructor: 'Tyghe',
-            periods: [
-              { day: 1, start: '13:00', finish: '14:30', place: '17201' },
-              { day: 5, start: '13:30', finish: '15:00', place: '0503' }
-            ]
-          },
-          {
-            sectionNo: '451',
-            type:'1',
-            instructor: 'Siriporn',
-            periods: [
-              { day: 1, start: '13:00', finish: '14:30', place: '0202' },
-              { day: 5, start: '13:30', finish: '15:00', place: '0203' }
-            ]
-          }
-        ]
-      },
-      {
-        courseId: '01204113',
-        courseName: 'Computers and Programming YYY',
-        lecCredit:'1', labCredit:'2',
-        sections: [
-          {
-            sectionNo: '450',
-            type:'0',
-            instructor: 'Tyghe',
-            periods: [
-              { day: 1, start: '13:00', finish: '14:30', place: '17201' },
-              { day: 5, start: '13:30', finish: '15:00', place: '0503' }
-            ]
-          },
-          {
-            sectionNo: '451',
-            type:'1',
-            instructor: 'Siriporn',
-            periods: [
-              { day: 1, start: '13:00', finish: '14:30', place: '0202' },
-              { day: 5, start: '13:30', finish: '15:00', place: '0203' }
-            ]
-          },
-          {
-            sectionNo: '452',
-            type:'1',
-            instructor: 'Siriporn',
-            periods: [
-              { day: 1, start: '13:00', finish: '14:30', place: '0202' },
-              { day: 5, start: '13:30', finish: '15:00', place: '0203' }
-            ],
-            selected: true
-          }
-        ]
-      }
-    ]
+    $scope.courses = [ ]
+    
+    try {
+      schedules.urlToScope($scope)
+    } catch (e) {
+      // no ID given
+    }
+    
   })
   .controller('SaveController', function($scope, $http) {
     
@@ -192,7 +106,7 @@ angular.module('scheduler', ['scheduler.editor', 'ezfb'])
       $scope.saving = true
       $http.post('backend/save.php', data)
         .success(function(result) {
-          location.replace('?id=' + result.key)
+          location.href = ('view.html?id=' + result.key)
         })
         .error(function() {
           alert('Cannot save schedule! Sorry')

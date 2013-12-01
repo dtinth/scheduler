@@ -1,0 +1,23 @@
+
+<div ng-controller="ScheduleTimetableViewController">
+  
+  <div class="timetable" ng-style="{ height: height }">
+    
+    <div class="periods grids">
+      <div class="gridline" ng-repeat="gridline in gridlines track by gridline.hour" ng-style="{ left: gridline.x }">
+        <div class="grid-text">{{gridline.hour}}</div>
+      </div>
+    </div>
+    
+    <div ng-repeat="day in days" class="day" ng-style="{ top: day.y, height: day.h }">
+      <div class="day-text">{{day.text}}</div>
+      <div class="periods">
+        <div class="item" ng-repeat="item in day.items track by $id(item.period)"
+          ng-style="{ left: item.x, width: item.w, height: item.h, top: item.y }"
+          ng-class="{ item: true, preview: item.preview, hover: item.hover }">{{item.course.courseName}} {{item.section.sectionNo}}</div>
+      </div>
+    </div>
+    
+  </div>
+
+</div>

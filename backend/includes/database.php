@@ -18,13 +18,24 @@ class DbUtil {
     return $db->lastInsertId();
   }
   
-  static function select($statement, $bindings=array()) {
+  static function createStatement($sql, $bindings=array()) {
     global $db;
-    $statement = $db->prepare($statement);
+    $statement = $db->prepare($sql);
     foreach ($bindings as $key => $value) {
       $statement->bindValue($key, $value);
     }
+    return $statement;
+  }
+  
+  static function query($sql, $bindings=array()) {
+    $statement = self::createStatement($sql, $bindings);
     self::execute($statement);
+    return $statement;
+  }
+  
+  static function select($sql, $bindings=array()) {
+    global $db;
+    $statement = self::query($sql, $bindings);
     return $statement->fetchAll();
   }
   

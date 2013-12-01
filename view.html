@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" ng-app="scheduler.view">
+<head>
+  <meta charset="UTF-8">
+  <title>Scheduler</title>
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/scheduler.css">
+  <script src="//use.edgefonts.net/montez.js"></script>
+</head>
+<body ng-controller="ViewPageController">
+  
+  <div id="header">
+    <h1>Scheduler</h1>
+  </div>
+  
+  <div id="main" class="main-only" ng-controller="ScheduleViewController">
+    
+    <div id="meta">
+      <h1>{{scheduleInfo.name}}
+      <small ng-if="scheduleInfo.user">by <a href="https://www.facebook.com/profile.php?id={{scheduleInfo.user.uid}}"> {{scheduleInfo.user.name}}</a></small></h1>
+    </div>
+    
+    <div id="schedule">
+      <ng-include src="'template/schedule.html'"></ng-include>
+    </div>
+    
+    <div class="info-table">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Subject [Section]</th>
+            <th>Time</th>
+            <th>Place</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="course in courses">
+          <tr ng-repeat-start="section in activeSections(course.sections)">
+            <td rowspan="{{section.periods.length}}">
+              {{course.courseId}} <strong>{{course.courseName}}</strong> [{{section.sectionNo}}]
+            </td>
+            <td>
+              {{date(section.periods[0].day)}} {{time(section.periods[0].start)}} - {{time(section.periods[0].finish)}}
+            </td>
+            <td>
+              {{section.periods[0].place}}
+            </td>
+          </tr>
+          <tr ng-repeat="period in section.periods" ng-if="!$first" ng-repeat-end>
+            <td>
+              {{date(period.day)}} {{time(period.start)}} - {{time(period.finish)}}
+            </td>
+            <td>
+              {{period.place}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+    
+  <script src="vendor/jquery/jquery-2.0.3.min.js"></script>
+  <script src="vendor/angular/angular.min.js"></script>
+  <script src="vendor/angular-easyfb/angular-easyfb.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  
+  <script src="js/view.js"></script>
+  <script src="vendor/ui-utils/ui-utils.min.js"></script>
+  
+</body>
+</html>

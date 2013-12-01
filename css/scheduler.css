@@ -49,6 +49,9 @@ body {
   left: 0; right: 240px; bottom: 0;
   overflow: auto;
 }
+.main-only#main {
+  right: 0;
+}
 
 #schedule {
   background: white;
@@ -62,6 +65,13 @@ body {
   text-align: right;
 }
 
+#meta {
+  margin: 32px;
+  margin-bottom: -16px;
+}
+#meta h1 {
+  margin: 0;
+}
 
 .info-table {
   margin: 32px;
@@ -217,16 +227,75 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
 }
 
 
+#import-search {
+  border-radius: 50px;
+}
+
+.course-code-th { width: 8em; }
+.search-table b { background: #ff6; }
 
 
-
-
-
-
-
-
-
-
+.timetable {
+  position: relative;
+  -webkit-transition: 0.3s height;
+  transition: 0.3s height;
+}
+.timetable .day {
+  position: absolute;
+  border-bottom: 1px solid #ddd;
+  left: 0; right: 0;
+  -webkit-transition: 0.3s top, 0.3s height;
+  transition: 0.3s top, 0.3s height;
+}
+.timetable .day-text {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; width: 50px;
+  background: #eee;
+  text-align: center;
+  line-height: 36px;
+}
+.timetable .periods {
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 50px;
+}
+.timetable .gridline {
+  position: absolute;
+  top: 0; bottom: 0; width: 1px;
+  -webkit-transition: 0.3s left;
+  transition: 0.3s left;
+  background: #eee;
+}
+.timetable .grid-text {
+  position: absolute;
+  top: 0; right: 4px;
+  color: #555;
+  font: bold 11px/18px Verdana, sans-serif;
+}
+.timetable .item {
+  position: absolute;
+  background: #eee;
+  border: 1px solid #ccc;
+  margin-top: -1px;
+  margin-right: -1px;
+  -webkit-transition: 0.3s -webkit-transform, 0.3s top, 0.3s left;
+  transition: 0.3s transform, 0.3s top, 0.3s left;
+  
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+}
+.timetable .item.hover {
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(127, 235, 166, 0.56);
+  background: #cef8dc;
+  border-color: #7feba6;
+  color: #098d35;
+}
+.timetable .item.preview {
+  z-index: 2;
+  opacity: 0.8;
+  transform: translate(-5px, -5px);
+  -webkit-transform: translate(-5px, -5px);
+}
 
 
 

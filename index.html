@@ -13,12 +13,12 @@
     <h1>Scheduler</h1>
   </div>
   
-  <div id="main">
+  <div id="main" ng-controller="ScheduleViewController">
   
     <div id="schedule">
       
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias officia facilis libero cumque vel culpa nobis eius ullam voluptatibus incidunt! Est libero eum aliquid repellat tempora eaque laborum asperiores corporis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, quod quaerat nihil. Doloribus, eos aut maiores eaque facere ab pariatur id. Fugiat cum unde libero ipsa natus at optio saepe. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, hic, quo repellendus at repudiandae qui dolores quasi accusamus iste dolore repellat quos doloremque vitae iure quibusdam quisquam praesentium laudantium natus.
-      
+      <ng-include src="'template/schedule.html'"></ng-include>
+    
       <div class="buttons">
         <button class="btn btn-lg btn-primary" ng-click="saveSchedule()">
           Save Schedule
@@ -74,6 +74,10 @@
     
     <div class="subjects">
       
+      <div class="alert alert-default text-muted" ng-show="courses.length == 0">
+        <p><strong>Get started.</strong> Please add a course to your timetable by clicking the <i class="glyphicon glyphicon-plus"></i> button above, or "Import from KU" below.</p>
+      </div>
+      
       <div class="subject-pick" ng-repeat="course in courses">
         <h3><a href="javascript://" ng-click="editCourse(course)">{{course.courseName}}
           <i class="glyphicon glyphicon-pencil"></i>
@@ -94,7 +98,7 @@
     </div>
     
     <div id="import-toolbar">
-      <button class="btn btn-default">Import from KU</button>
+      <button class="btn btn-default" ng-click="importFromKU()">Import from KU</button>
     </div>
     
   </div>
@@ -150,6 +154,11 @@
   
   </div>
     
+  
+  <div class="modal fade" id="ku-import-modal">
+    <ng-include src="'template/import.html'"></ng-include>  
+  </div>
+    
   <script src="vendor/jquery/jquery-2.0.3.min.js"></script>
   <script src="vendor/angular/angular.min.js"></script>
   <script src="vendor/angular-easyfb/angular-easyfb.js"></script>
@@ -157,6 +166,8 @@
   
   <script src="js/scheduler.js"></script>
   <script src="js/editor.js"></script>
+  <script src="js/import.js"></script>
+  <script src="js/view.js"></script>
   <script src="vendor/ui-utils/ui-utils.min.js"></script>
   
 </body>

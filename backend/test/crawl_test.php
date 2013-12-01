@@ -1,19 +1,19 @@
 <?php
 
-require 'scraper.php';
+require '../includes/scraper.php';
 
-$html = file_get_contents('test.html');
+$html = file_get_contents('crawl_test_data.html');
 $schedule_scraper = new ScheduleScraper($html);
 $result = $schedule_scraper->scrape();
 
 ?>
 <meta charset="utf-8">
 <table border="1">
-  <?php foreach ($result as $group) { ?>
+  <?php foreach ($result->sections as $group) { ?>
     <tr>
       <td>Section <?= $group->sectionNo ?></td>
       <td><?= $group->courseType ?></td>
-      <td>Instructors: <?= implode(',,', $group->instructors) ?></td>
+      <td>Instructors: <?= implode(', ', $group->instructors) ?></td>
       <td>
         <?= $group->studentsEnrolled ?> / <?= $group->studentsAccepted ?>
       </td>
@@ -29,4 +29,6 @@ $result = $schedule_scraper->scrape();
     </tr>
   <?php } ?>
 </table>
+
+<?= ScheduleScraper::toJSON($result); ?>
 

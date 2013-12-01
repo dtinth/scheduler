@@ -1,0 +1,65 @@
+<div class="modal-dialog">
+  <div class="modal-content" ng-controller="ImportController">
+  
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">Import Courses from KU</h4>
+    </div>
+    
+    <div class="modal-body" ng-show="!importing">
+      
+      <div class="alert alert-info" ng-show="loading">Loading course list from KU</div>
+      <div class="alert alert-danger" ng-show="importError"><strong>Error!</strong> {{importError}}</div>
+      
+      <div class="form-horizontal" ng-show="loaded">
+        <div class="form-group">
+          <label for="import-search" class="col-sm-2 control-label">Search</label>
+          <div class="col-sm-9"><input type="search" class="form-control" ng-model="searchTerm" id="import-search" placeholder="Course Code (01420117) or Course Name (Eng Math)"></div>
+        </div>
+        <div class="form-group">
+          <label for="import-semester" class="col-sm-2 control-label">Search</label>
+          <div class="col-sm-9"><select class="form-control" ng-model="semester" id="import-semester" placeholder="Sea">
+            <option value="0">Summer</option>
+            <option value="1">First Semester</option>
+            <option value="2">Second Semester</option>
+            <option value="3">Third Semester</option>
+          </select></div>
+        </div>
+      </div>
+      
+      <table class="table table-bordered search-table">
+        <thead>
+          <tr>
+            <th class="course-code-th">Course Code</th>
+            <th>Course Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="course in results">
+            <td><a ng-click="importCourse(course)" href="javascript://" ng-bind-html="highlight(course, 'id', 0)"></a></td>
+            <td class="course-name-td" ng-bind-html="highlight(course, 'name', 9)"></td>
+          </tr>
+        </tbody>
+        <tbody ng-show="searchTerm == ''">
+          <tr>
+            <td colspan="2" class="text-center">Please enter search terms first.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    
+    <div class="modal-body" ng-show="importing">
+      <div class="alert alert-info">Importing course...</div>
+      <div class="alert alert-danger" ng-show="importError"><strong>Error!</strong> {{importError}}
+      &nbsp; &nbsp; <button class="btn btn-default" ng-click="importing = false; importError = ''">Go Back</button></div>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+    </div>
+    
+    </form>
+
+  </div>
+</div>

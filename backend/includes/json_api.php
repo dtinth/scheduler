@@ -6,7 +6,12 @@ function json_api($fn) {
   } else {
     $json = null;
   }
-  $result = $fn($json);
+  try {
+    $result = $fn($json);
+  } catch (Exception $e) {
+    header('HTTP/1.1 500 Wtf');
+    $result = array('error' => $e->getMessage());
+  }
   header('Content-Type: application/json');
   echo json_encode($result);
 }
