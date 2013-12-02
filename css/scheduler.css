@@ -323,8 +323,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
 }
 .timetable .item {
   position: absolute;
-  -webkit-transition: 0.3s -webkit-transform, 0.3s top, 0.3s left;
-  transition: 0.3s transform, 0.3s top, 0.3s left;
+  -webkit-transition: 0.3s -webkit-transform, 0.3s top, 0.3s left, 0.3s width;
+  transition: 0.3s transform, 0.3s top, 0.3s left, 0.3s width;
   text-align: center;
   line-height: 16px;
   transform: translate(0, 0);

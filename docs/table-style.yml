@@ -1,0 +1,56 @@
+
+users:
+  - { column: "id", type: "number" }
+  - { column: "uid", type: "number" }
+  - { column: "name", type: "string" }
+
+schedules:
+  - { column: "id", type: "number" }
+  - { column: "user_id", type: "number" }
+  - { column: "name", type: "string" }
+  - { column: "secret", type: "string", code: true }
+  - { column: "created_at", type: "string" }
+  - { column: "updated_at", type: "string" }
+
+courses:
+  - { column: "id", type: "number" }
+  - { column: "schedule_id", type: "number" }
+  - { column: "name", type: "string" }
+  - { column: "course_id", type: "number" }
+  - { column: "credits_lecture", type: "number" }
+  - { column: "credits_lab", type: "number" }
+  - { column: "display_name", type: "string" }
+
+groups:
+  - { column: "id", type: "number" }
+  - { column: "course_id", type: "number", code: true }
+  - { column: "section_no", type: "number" }
+  - { column: "type", type: "string" }
+  - { column: "selected", type: "number" }
+
+periods:
+  - { column: "id", type: "number" }
+  - { column: "group_id", type: "number" }
+  - { column: "day", type: "number", day: true }
+  - { column: "start_time", type: "number", time: true }
+  - { column: "finish_time", type: "number", time: true }
+  - { column: "location", type: "string" }
+
+instructors:
+  - { column: "id", type: "number" }
+  - { column: "group_id", type: "number" }
+  - { column: "name", type: "string" }
+
+ku_courses:
+  - { column: "id", type: "string", code: true }
+  - { column: "name", type: "string" }
+
+ku_timetables:
+  - { column: "ku_course_id", type: "number", code: true }
+  - { column: "year", type: "number" }
+  - { column: "semester", type: "number" }
+  - { column: "fetched_at", type: "string" }
+  - { column: "timetable", type: "string", code: true, truncate: true }
+
+
+

@@ -1,18 +1,66 @@
 \documentclass[12pt,a4paper]{article}
 
-\usepackage{avant,graphicx,color,longtable,fancyvrb,hyperref}
+\usepackage{avant,graphicx,color,longtable,fancyvrb,hyperref,amsmath,fancyhdr}
 \usepackage[margin=2cm]{geometry}
+\usepackage[normalem]{ulem}
+\usepackage{pdflscape}
+\usepackage{pbox}
 
-COMMANDS
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
 
 \begin{document}
+
 \title{Scheduler \\ Database Project Report}
 \author{Thai Pangsakulyanont \\ Khanet Krongkitichu \\ Lattasit Haritaworn}
-\date{Noverber 2013}
+\date{November 2013}
 \maketitle
 
-\tableofcontents
+\begin{center}
+\small This report is part of project work for \textbf{01219331 Database Design \& Programming Course}.
+\end{center}
 
-CONTENTHERE
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{Scheduler, Database Project Report} }
+\rhead{ \fancyplain{}{\today} }
+\rfoot{ \fancyplain{}{\thepage} }
+
+\tableofcontents
+\newpage
+
+\newcommand{\NR}{\noalign{\medskip}}
+\newcommand{\Code}[1]{\texttt{#1}}
+\newcommand{\Tbl}[1]{\subsubsection{Table \texttt{#1}}}
+
+\input{../contents/1-background.md}
+
+\input{../contents/2-vision.md}
+
+\input{../contents/3-software-tools.tex}
+
+\input{../contents/4-er.tex}
+
+\input{../contents/5-1-naming.md}
+
+\input{../contents/5-2-data-dictionary.tex}
+
+\input{../contents/5-3-example-data.tex}
+
+\input{../contents/6-example-queries.md}
 
 \end{document}
