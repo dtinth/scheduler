@@ -55,7 +55,10 @@ if ($schedule['user_id']) {
       
       <div class="clearfix">
         <?= file_get_contents('template/credits.html'); ?>
-        <div class="buttons" ng-show="facebook.me.id == scheduleInfo.user.uid">
+        <div class="buttons" ng-show="facebook.loggedIn && facebook.me.id == scheduleInfo.user.uid">
+          <a class="btn btn-lg btn-default" href="my.php">
+            My Saved Schedules
+          </a>
           <button class="btn btn-lg btn-default" ng-click="editThisSchedule()">
             Edit Schedule
           </button>

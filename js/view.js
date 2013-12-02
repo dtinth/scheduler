@@ -45,7 +45,7 @@ angular.module('scheduler.view', ['ui.utils', 'facebook'])
     
     $scope.changeCourseName = function(course) {
       var answer = prompt('Enter display name for this course', course.displayName || course.courseName || '')
-      course.displayName = answer
+      if (answer != null) course.displayName = answer
     }
     
     $scope.sectionHtml = function(section) {

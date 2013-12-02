@@ -79,9 +79,7 @@ body {
 #meta h1 {
   margin: 0;
 }
-
-
-.info-table {
+.info-table, .box {
   margin: 32px;
 }
 

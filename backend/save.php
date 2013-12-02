@@ -26,7 +26,7 @@ json_api(function($params) {
         WHERE schedule_id = :id", array(':id' => $id));
       DbUtil::query("
         UPDATE schedules
-        SET name = :name
+        SET name = :name, updated_at = CURRENT_TIMESTAMP()
         WHERE id = :id", array(':id' => $id, ':name' => $name));
     }
   }

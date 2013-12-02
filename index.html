@@ -26,6 +26,10 @@
       <ng-include src="'template/credits.html'"></ng-include>
       
       <div class="buttons">
+        <a ng-show="facebook.loggedIn" class="btn btn-lg btn-default" href="my.php">
+          My Saved Schedules
+        </a>
+        
         <button class="btn btn-lg btn-primary" ng-click="saveSchedule()">
           Save Schedule
         </button>
