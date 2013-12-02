@@ -13,7 +13,8 @@ class DbUtil {
   static function execute($statement, $what = 'execute SQL') {
     global $db;
     if (!$statement->execute()) {
-      throw new Exception("Cannot $what! " . $statement->errorInfo()[2]);
+      $errorInfo = $statement->errorInfo();
+      throw new Exception("Cannot $what! " . $errorInfo[2]);
     }
     return $db->lastInsertId();
   }

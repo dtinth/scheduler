@@ -131,7 +131,8 @@ class ScheduleDao {
       SELECT secret FROM schedules WHERE id = :id");
     $statement->bindParam(':id', $scheduleId);
     DbUtil::execute($statement);
-    return $scheduleId . $statement->fetch()['secret'];
+    $row = $statement->fetch();
+    return $scheduleId . $row['secret'];
   }
   
   public static function findByKey($key) {

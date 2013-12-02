@@ -43,9 +43,10 @@ class ScheduleScraper {
 
     $groups = array();
     $currentGroup = null;
+    $self = $this;
 
     $this->crawler->filter('tr')->each(
-      function($tr) use (&$groups, &$currentGroup) {
+      function($tr) use (&$groups, &$currentGroup, $self) {
         $tds = $tr->filter('td');
         if ($tds->count() >= 8) {
 
@@ -58,22 +59,22 @@ class ScheduleScraper {
           
           // enter information for group
 
-          $currentGroup->sectionNo = self::supertrim($tds->eq(2)->text());
-          $currentGroup->type = self::supertrim($tds->eq(1)->text());
+          $currentGroup->sectionNo = ScheduleScraper::supertrim($tds->eq(2)->text());
+          $currentGroup->type = ScheduleScraper::supertrim($tds->eq(1)->text());
 
 		  // Check period
 	   	  if(strlen($tds->eq(3)->text()) !== 20 && strlen($tds->eq(4)->text(4)) != 2)
-            $currentGroup->periods[] = $this->parsePeriod($tds->eq(3)->text(), self::supertrim($tds->eq(4)->text()));
+            $currentGroup->periods[] = $self->parsePeriod($tds->eq(3)->text(), ScheduleScraper::supertrim($tds->eq(4)->text()));
 
 		  $currentGroup->studentsAccepted = intval($tds->eq(6)->text());
 		  $currentGroup->studentsEnrolled = intval($tds->eq(7)->text());
-		  $currentGroup->instructors = explode('<br>', self::supertrim($tds->eq(5)->html()));
+		  $currentGroup->instructors = explode('<br>', ScheduleScraper::supertrim($tds->eq(5)->html()));
 
 
         } else if ($currentGroup !== null) {
           // tds = [ date-time, location ]
 		
-          $currentGroup->periods[] = $this->parsePeriod($tds->eq(0)->text(), self::supertrim($tds->eq(1)->text()));
+          $currentGroup->periods[] = $self->parsePeriod($tds->eq(0)->text(), ScheduleScraper::supertrim($tds->eq(1)->text()));
         }
       }
     );
@@ -153,7 +154,7 @@ class ScheduleScraper {
     return sprintf("%02d:%02d", (int)($mins / 60), $mins % 60);
   }
   
-  private static function supertrim($x) {
+  static function supertrim($x) {
     return trim(str_replace("\xC2\xA0", "", $x));
   }
   
