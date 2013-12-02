@@ -49,7 +49,7 @@ angular.module('scheduler.view', ['ui.utils', 'facebook'])
     }
     
     $scope.sectionHtml = function(section) {
-      var html = (section.type == '1' ? '<span class="glyphicon glyphicon-send"></span>&nbsp;' : '<span class="glyphicon glyphicon-book"></span>&nbsp;') + section.sectionNo
+      var html = (section.type == '1' ? '<span title="Lab" class="glyphicon glyphicon-send"></span>&nbsp;' : '<span title="Lecture" class="glyphicon glyphicon-book"></span>&nbsp;') + section.sectionNo
       return $sce.trustAsHtml(html)
     }
     

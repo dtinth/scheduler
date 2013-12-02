@@ -66,7 +66,7 @@ angular.module('scheduler', ['scheduler.editor', 'scheduler.import',  'scheduler
       $scope.saving = true
       $http.post('backend/save.php', data)
         .success(function(result) {
-          location.href = ('view.html?id=' + result.key)
+          location.href = ('view.php?id=' + result.key)
         })
         .error(function() {
           alert('Cannot save schedule! Sorry')

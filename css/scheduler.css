@@ -336,11 +336,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
   cursor: pointer;
   background: #ffa;
 }
-.section-no .glyphicon {
+
+.section-no .glyphicon,
+.section-types .glyphicon {
   font-size: 80%;
   opacity: 0.6;
+  cursor: help;
 }
-.section-no .glyphicon-send {
+.section-no .glyphicon-send,
+.section-types .glyphicon-send {
   font-size: 90%;
 }
 .timetable .item.hover {
@@ -355,6 +359,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
   opacity: 0.8;
   transform: translate(-5px, -5px);
   -webkit-transform: translate(-5px, -5px);
+}
+
+.section-types {
+  position: relative;
+  top: 28px;
+  left: 40px;
+  color: #666;
 }
 
 

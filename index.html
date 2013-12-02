@@ -14,7 +14,12 @@
   </div>
   
   <div id="main" ng-controller="ScheduleViewController">
-  
+    
+    <div class="text-muted section-types">
+      <span class="glyphicon glyphicon-book"></span> Lecture &middot; 
+      <span class="glyphicon glyphicon-send"></span> Lab
+    </div>
+    
     <div id="schedule">
       
       <ng-include src="'template/schedule.html'"></ng-include>
@@ -30,36 +35,7 @@
     
     
     <div class="info-table">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Subject [Section]</th>
-            <th>Time</th>
-            <th>Place</th>
-          </tr>
-        </thead>
-        <tbody ng-repeat="course in courses">
-          <tr ng-repeat-start="section in activeSections(course.sections)">
-            <td rowspan="{{section.periods.length}}">
-              {{course.courseId}} <strong>{{course.courseName}}</strong> [{{section.sectionNo}}]
-            </td>
-            <td>
-              {{date(section.periods[0].day)}} {{time(section.periods[0].start)}} - {{time(section.periods[0].finish)}}
-            </td>
-            <td>
-              {{section.periods[0].place}}
-            </td>
-          </tr>
-          <tr ng-repeat="period in section.periods" ng-if="!$first" ng-repeat-end>
-            <td>
-              {{date(period.day)}} {{time(period.start)}} - {{time(period.finish)}}
-            </td>
-            <td>
-              {{period.place}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <ng-include src="'template/info-table.html'"></ng-include>
     </div>
     
   </div>

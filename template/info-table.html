@@ -1,0 +1,33 @@
+
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Subject [Section]</th>
+      <th>Time</th>
+      <th>Place</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="course in courses">
+    <tr ng-repeat-start="section in activeSections(course.sections)">
+      <td rowspan="{{section.periods.length}}">
+        {{course.courseId}} <strong>{{course.courseName}}</strong> <span class="section-no" ng-bind-html="sectionHtml(section)"></span>
+      </td>
+      <td>
+        {{date(section.periods[0].day)}} {{time(section.periods[0].start)}} - {{time(section.periods[0].finish)}}
+      </td>
+      <td>
+        {{section.periods[0].place}}
+      </td>
+    </tr>
+    <tr ng-repeat="period in section.periods" ng-if="!$first" ng-repeat-end>
+      <td>
+        {{date(period.day)}} {{time(period.start)}} - {{time(period.finish)}}
+      </td>
+      <td>
+        {{period.place}}
+      </td>
+    </tr>
+  </tbody>
+</table>
