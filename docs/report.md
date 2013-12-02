@@ -151,6 +151,17 @@ WHERE group_id IN (
 | \\(23.0000\\) |
 
 
+Example 3
+---------
+
+Remove the cached timetable that is retrieved from KU
+that is older than 1 hour.
+
+```sql
+DELETE FROM ku_timetables
+WHERE fetched_at < DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+```
+
 
 
 

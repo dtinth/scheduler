@@ -9,6 +9,11 @@ function filter_section($section) {
 }
 
 json_api(function() {
+  
+  DbUtil::query("
+    DELETE FROM ku_timetables
+      WHERE fetched_at < DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)");
+  
   $year = '56';
   $semester = intval($_GET['semester']);
   $id = $_GET['id'];

@@ -47,13 +47,14 @@ class ScheduleDao {
       $statement->bindParam(':course_id',       $courseCode);
       $statement->bindParam(':schedule_id',     $scheduleId);
       $statement->bindParam(':name',            $courseName);
-      $statement->bindParam(':display_name',     $displayName);
+      $statement->bindParam(':display_name',    $displayName);
       $statement->bindParam(':credits_lecture', $creditsLecture);
       $statement->bindParam(':credits_lab',     $creditsLab);
       
       $courseCode = $course->courseId;
       $courseName = $course->courseName;
       $displayName = $course->displayName;
+      if (empty($displayName)) $displayName = '';
     
       $creditsLecture = 3; // TODO
       $creditsLab     = 0; // TODO
