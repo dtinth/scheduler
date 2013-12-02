@@ -9,6 +9,10 @@ json_api(function() {
   $key = $_GET['id'];
   $schedule = ScheduleDao::findByKey($key);
   
+  if (!$schedule) {
+    throw new Exception("Schedule not found!");
+  }
+  
   $user = null;
   
   if ($schedule['user_id']) {

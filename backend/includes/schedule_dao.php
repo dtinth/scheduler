@@ -40,18 +40,20 @@ class ScheduleDao {
       
       $statement = $db->prepare("
         INSERT INTO courses
-          (course_id, credits_lecture, credits_lab, schedule_id, name)
+          (course_id, credits_lecture, credits_lab, schedule_id, name, display_name)
         VALUES
-          (:course_id, :credits_lecture, :credits_lab, :schedule_id, :name)");
+          (:course_id, :credits_lecture, :credits_lab, :schedule_id, :name, :display_name)");
           
       $statement->bindParam(':course_id',       $courseCode);
       $statement->bindParam(':schedule_id',     $scheduleId);
       $statement->bindParam(':name',            $courseName);
+      $statement->bindParam(':display_name',     $displayName);
       $statement->bindParam(':credits_lecture', $creditsLecture);
       $statement->bindParam(':credits_lab',     $creditsLab);
       
       $courseCode = $course->courseId;
       $courseName = $course->courseName;
+      $displayName = $course->displayName;
     
       $creditsLecture = 3; // TODO
       $creditsLab     = 0; // TODO
@@ -159,13 +161,14 @@ class ScheduleDao {
       SELECT * FROM instructors WHERE group_id IN (
         SELECT id FROM groups WHERE course_id IN (
           SELECT id FROM courses WHERE schedule_id = :id))", array(':id' => $id)));
-
+    
     $output = array();
     
     foreach ($courses as $courseRow) {
       $course = array(
         'courseId' => $courseRow['course_id'],
         'courseName' => $courseRow['name'],
+        'displayName' => $courseRow['display_name'],
         'lecCredit' => $courseRow['credits_lecture'],
         'labCredit' => $courseRow['credits_lab'],
         'sections' => array()

@@ -1,11 +1,11 @@
 
-angular.module('scheduler.view', ['ui.utils'])
+angular.module('scheduler.view', ['ui.utils', 'facebook'])
   .factory('schedules', function($http) {
     var schedules = { }
     schedules.getIdFromUrl = function() {
       var match = location.search.match(/id=([0-9a-f]+)/)
       if (!match) {
-        throw new Error('No ID')
+        return null
       }
       return match[1]
     }
@@ -13,26 +13,44 @@ angular.module('scheduler.view', ['ui.utils'])
       return $http.get('backend/load.php?id=' + id)
     }
     schedules.urlToScope = function($scope) {
-      schedules.load(schedules.getIdFromUrl())
-        .success(function(data) {
-          $scope.courses = data.courses
-          $scope.scheduleInfo = data
-        })
-        .error(function() {
-          alert('fail')
-        })
+      var id = schedules.getIdFromUrl()
+      if (id) {
+        schedules.load(id)
+          .success(function(data) {
+            $scope.courses = data.courses
+            $scope.scheduleId = id
+            $scope.scheduleInfo = data
+          })
+          .error(function() {
+            alert('fail')
+          })
+      }
     }
     return schedules
   })
-  .controller('ViewPageController', function($scope, schedules) {
+  .controller('ViewPageController', function($scope, schedules, facebook) {
+    $scope.facebook = facebook
+    $scope.editThisSchedule = function() {
+      location.href = 'index.html?id=' + $scope.scheduleId
+    }
     schedules.urlToScope($scope)
   })
-  .controller('ScheduleViewController', function($scope) {
+  .controller('ScheduleViewController', function($scope, $sce) {
     
     $scope.activeSections = function(sections) {
       return sections.filter(function(section) {
         return section.selected
       })
+    }
+    
+    $scope.changeCourseName = function(course) {
+      var answer = prompt('Enter display name for this course', course.displayName || course.courseName || '')
+      course.displayName = answer
+    }
+    
+    $scope.sectionHtml = function(section) {
+      var html = (section.type == '1' ? '<span class="glyphicon glyphicon-send"></span>&nbsp;' : '<span class="glyphicon glyphicon-book"></span>&nbsp;') + section.sectionNo
+      return $sce.trustAsHtml(html)
     }
     
     $scope.date = function(day){
@@ -124,24 +142,30 @@ angular.module('scheduler.view', ['ui.utils'])
         var using = [false]
         var events = []
         day.items.forEach(function(item) {
-          if (item.preview) {
-            item.row = 0
-            return
-          }
           events.push({ type: 'start', item: item, time: item.start })
           events.push({ type: 'finish', item: item, time: item.finish - 0.00000001 })
         })
         events.sort(function(a, b) {
+          if (a.time == b.time) {
+            return a.item.section.sectionNo - b.item.section.sectionNo
+          }
           return a.time - b.time
         })
         events.forEach(function(event) {
           if (event.type == 'start') {
             for (var i = 0; using[i]; i ++) { } // i = first free row
-            using[i] = true
             event.item.row = i
+            if (!event.item.preview) {
+              using[i] = true
+            }
           } else if (event.type == 'finish') {
-            using[event.item.row] = false
+            if (!event.item.preview) {
+              using[event.item.row] = false
+            }
           }
+        })
+        day.items.forEach(function(item) {
+          item.row = Math.min(item.row, using.length - 1)
         })
         day.rows = using.length
         day.y = cy

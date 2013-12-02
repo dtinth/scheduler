@@ -14,8 +14,26 @@ json_api(function($params) {
   }
   
   $userId = FacebookDao::getUserId();
+  $id = null;
   
-  $id = ScheduleDao::insertSchedule($userId, $name);
+  if (isset($params->id) && $userId != null) {
+    $key = $params->id;
+    $schedule = ScheduleDao::findByKey($key);
+    if ($schedule && $schedule['user_id'] == $userId) {
+      $id = $schedule['id'];
+      DbUtil::query("
+        DELETE FROM courses
+        WHERE schedule_id = :id", array(':id' => $id));
+      DbUtil::query("
+        UPDATE schedules
+        SET name = :name
+        WHERE id = :id", array(':id' => $id, ':name' => $name));
+    }
+  }
+  
+  if ($id == null) {
+    $id = ScheduleDao::insertSchedule($userId, $name);
+  }
   ScheduleDao::insertScheduleData($id, $courses);
 
   return array('key' => ScheduleDao::key($id));

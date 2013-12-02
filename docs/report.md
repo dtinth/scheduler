@@ -77,6 +77,20 @@ ER Diagram
 Development
 ===========
 
+Naming Conventions
+------------------
+
+An entity set in the ER diagram corresponds to a table in the database.
+However, we slightly alter the table name from the ER diagram:
+
+| ER Entity Set Name | Database Table Name |
+| ------------------ | ------------------- |
+| Capitalized        | lowercased          |
+| CamelCased         | snake_cased         |
+| Singular           | Plural              |
+| _Example_: `KUTimetable` | _Example_: `ku_timetables` |
+
+
 Data Dictionary
 ---------------
 
@@ -87,12 +101,54 @@ TBA
 Example Queries
 ===============
 
+This section contains example queries
+to show what kind of information we can extract from the application's database
+using SQL queries.
+
+Please note that these queries are in MySQL's SQL Dialect.
+
+Example 1
+---------
+
+Find the names of the instructors that teaches in my semester (my schedule's ID = 30).
+
 ```sql
-SELECT 1 FROM test
-WHERE "a" = "b"; DROP TABLE test
+SELECT DISTINCT name FROM instructors
+WHERE group_id IN (
+  SELECT id FROM groups
+  WHERE selected AND course_id IN (
+    SELECT id FROM courses
+    WHERE schedule_id = 30))
+ORDER BY name
 ```
 
+| `name` |
+| ---- |
+| Anan |
+| Hutchatai |
+| Siriporn |
+| Somnuk |
 
+
+Example 2
+---------
+
+Find the total hours of class per week that SKE11 students are taking (SKE11 schedule's ID = 31).
+
+```sql
+SELECT
+  SUM(finish_time - start_time) / 60 AS hours_per_week
+FROM periods
+WHERE group_id IN (
+  SELECT id FROM groups
+  WHERE selected AND course_id IN (
+    SELECT id FROM courses
+    WHERE schedule_id = 31))
+```
+
+| `hours_per_week` |
+| -------------- |
+| \\(23.0000\\) |
 
 
 

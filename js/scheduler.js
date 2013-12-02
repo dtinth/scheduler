@@ -1,51 +1,5 @@
 
-angular.module('scheduler', ['scheduler.editor', 'scheduler.import',  'scheduler.view', 'ezfb'])
-  .config(function ($FBProvider) {
-    $FBProvider.setInitParams({
-      appId: '239504039549087',
-      status: true,
-      cookie: true
-    })
-  })
-  .service('facebook', function($FB) {
-    
-    var facebook = { }
-    
-    facebook.loggedIn = false
-    
-    facebook.login = function() {
-      $FB.login()
-    }
-    
-    facebook.logout = function() {
-      $FB.logout()
-    }
-    
-    function checkLoginStatus() {
-      $FB.getLoginStatus().then(function(response) {
-        var auth = response.authResponse
-        if (!auth) {
-          facebook.loggedIn = false
-          facebook.auth = null
-          facebook.me = null
-        } else {
-          facebook.auth = auth
-          $FB.api('/me').then(function(me) {
-            facebook.me = me
-            facebook.loggedIn = true
-          })
-        }
-      })
-    }
-    
-    checkLoginStatus()
-    $FB.Event.subscribe('auth.authResponseChange', function() {
-      checkLoginStatus()
-    })
-    
-    return facebook
-    
-  })
+angular.module('scheduler', ['scheduler.editor', 'scheduler.import',  'scheduler.view', 'ezfb', 'facebook'])
   .controller('MainController', function($scope, facebook, schedules) {
     
     $scope.facebook = facebook
@@ -97,12 +51,18 @@ angular.module('scheduler', ['scheduler.editor', 'scheduler.import',  'scheduler
     }
     
   })
-  .controller('SaveController', function($scope, $http) {
+  .controller('SaveController', function($scope, $http, schedules) {
     
     $scope.info = { name: '' }
     
+    $scope.$watch('scheduleInfo', function(info) {
+      if (info) $scope.info.name = info.name
+    })
+    
     $scope.save = function() {
       var data = { name: $scope.info.name, courses: $scope.courses }
+      var id = $scope.scheduleId
+      if (id) data.id = id
       $scope.saving = true
       $http.post('backend/save.php', data)
         .success(function(result) {

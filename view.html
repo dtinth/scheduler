@@ -21,7 +21,18 @@
     </div>
     
     <div id="schedule">
+      
       <ng-include src="'template/schedule.html'"></ng-include>
+      
+      <div class="clearfix">
+        <ng-include src="'template/credits.html'"></ng-include>
+        <div class="buttons" ng-show="facebook.me.id == scheduleInfo.user.uid">
+          <button class="btn btn-lg btn-default" ng-click="editThisSchedule()">
+            Edit Schedule
+          </button>
+        </div>
+      </div>
+      
     </div>
     
     <div class="info-table">
@@ -65,6 +76,7 @@
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
   
   <script src="js/view.js"></script>
+  <script src="js/facebook.js"></script>
   <script src="vendor/ui-utils/ui-utils.min.js"></script>
   
 </body>

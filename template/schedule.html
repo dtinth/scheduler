@@ -14,7 +14,13 @@
       <div class="periods">
         <div class="item" ng-repeat="item in day.items track by $id(item.period)"
           ng-style="{ left: item.x, width: item.w, height: item.h, top: item.y }"
-          ng-class="{ item: true, preview: item.preview, hover: item.hover }">{{item.course.courseName}} {{item.section.sectionNo}}</div>
+          ng-class="{ item: true, preview: item.preview, hover: item.hover }">
+          <div class="item-inner">
+            <div class="item-content">
+              <strong ng-click="changeCourseName(item.course)" title="Click to change display name of this course.">{{item.course.displayName || item.course.courseName}}</strong> <span class="section-no" ng-bind-html="sectionHtml(item.section)"></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     

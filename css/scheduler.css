@@ -50,6 +50,7 @@ body {
   overflow: auto;
 }
 .main-only#main {
+  position: relative;
   right: 0;
 }
 
@@ -64,6 +65,12 @@ body {
   margin-top: 16px;
   text-align: right;
 }
+.credits {
+  margin: 12px 2px;
+}
+.credits, .credits a {
+  color: #777;
+}
 
 #meta {
   margin: 32px;
@@ -73,8 +80,21 @@ body {
   margin: 0;
 }
 
+
 .info-table {
   margin: 32px;
+}
+
+
+@media print {
+  #header { position: relative; margin: 0; }
+  #meta h1 { font-size: 20pt; }
+  #meta, #schedule, .info-table { margin 0; }
+  #meta a:after { content: ''; }
+  .credits { font-size: 75%; margin: 0; }
+  .credits .names a:after { content: ''; }
+  .main-only#main { top: 0; }
+  .buttons { display: none; }
 }
 
 #course-toolbar {
@@ -265,23 +285,63 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
   transition: 0.3s left;
   background: #eee;
 }
+.timetable .gridline.ng-enter {
+  animation: fadeIn;
+  -webkit-animation: fadeIn 1s;
+}
+.timetable .gridline.ng-leave {
+  animation: fadeOut;
+  -webkit-animation: fadeOut 1s;
+}
 .timetable .grid-text {
   position: absolute;
   top: 0; right: 4px;
   color: #555;
   font: bold 11px/18px Verdana, sans-serif;
 }
-.timetable .item {
+.timetable .item-inner {
   position: absolute;
+  top: -1px; right: -1px; bottom: 0; left: 0;
   background: #eee;
   border: 1px solid #ccc;
-  margin-top: -1px;
-  margin-right: -1px;
+  
+  /* flexbox, por favor */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+ 
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center;
+}
+.timetable .item-content {
+}
+.timetable .item {
+  position: absolute;
   -webkit-transition: 0.3s -webkit-transform, 0.3s top, 0.3s left;
   transition: 0.3s transform, 0.3s top, 0.3s left;
-  
+  text-align: center;
+  line-height: 16px;
   transform: translate(0, 0);
   -webkit-transform: translate(0, 0);
+}
+#main:not(.main-only) .timetable .item strong:hover {
+  cursor: pointer;
+  background: #ffa;
+}
+.section-no .glyphicon {
+  font-size: 80%;
+  opacity: 0.6;
+}
+.section-no .glyphicon-send {
+  font-size: 90%;
 }
 .timetable .item.hover {
   z-index: 1;

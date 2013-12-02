@@ -11,6 +11,9 @@ data.gsub! (/\\begin\{verbatim\}\n([\s\S]*?)\\end\{verbatim\}/) do
   Pygments.highlight($1, :lexer => 'sql', :formatter => 'latex')
 end
 
+data.gsub!('\\textbackslash{}(', '\\(')
+data.gsub!('\\textbackslash{})', '\\)')
+
 template['COMMANDS'] = `python scripts/gen-style-def.py`
 template['CONTENTHERE'] = data
 
