@@ -6,7 +6,8 @@ Naming Conventions
 ------------------
 
 An entity set in the ER diagram corresponds to a table in the database.
-However, we slightly alter the table name from the ER diagram:
+However, we slightly alter the table name from the ER diagram,
+following the conventions of the Rails framework[^1].
 
 | ER Entity Set Name | Database Table Name |
 | ------------------ | ------------------- |
@@ -15,3 +16,4 @@ However, we slightly alter the table name from the ER diagram:
 | Singular           | Plural              |
 | _Example_: `KUTimetable` | _Example_: `ku_timetables` |
 
+[^1]: <http://itsignals.cascadia.com.au/?p=7>

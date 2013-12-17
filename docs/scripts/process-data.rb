@@ -49,7 +49,10 @@ def col_data(column, value)
 end
 
 out = []
-out << '\begin{tabular}{' << style.map { |column| col_def(column) }.join << '}' << "\n"
+out << '\begin{tabular}{' << style.map { |column| col_def(column) }.join << '}'
+if styles['headers'].include?(name)
+  out << '\multicolumn{' + style.length.to_s + '}{c}{\textbf{Table \texttt{' + name + '}}} \\\\'
+end
 out << '\hline \NR'
 
 out << style.map { |column| '\texttt{' + column["column"].to_latex + '}' }.join(' & ')

@@ -1,4 +1,8 @@
 
+headers:
+  - groups
+  - instructors
+
 users:
   - { column: "id", type: "number" }
   - { column: "uid", type: "number" }

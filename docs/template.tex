@@ -1,10 +1,11 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,a4paper,titlepage,twoside]{article}
 
-\usepackage{avant,graphicx,color,longtable,fancyvrb,hyperref,amsmath,fancyhdr}
+\usepackage{avant,graphicx,color,longtable,fancyvrb,hyperref,amsmath,fancyhdr,sidecap,placeins}
 \usepackage[margin=2cm]{geometry}
 \usepackage[normalem]{ulem}
 \usepackage{pdflscape}
 \usepackage{pbox}
+\usepackage[toc]{appendix}
 
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 \newenvironment{Shaded}{}{}
@@ -27,16 +28,18 @@
 
 \title{Scheduler \\ Database Project Report}
 \author{Thai Pangsakulyanont \\ Khanet Krongkitichu \\ Lattasit Haritaworn}
-\date{November 2013}
-\maketitle
-
+\date{November 2013 \\[1cm]
 \begin{center}
-\small This report is part of project work for \textbf{01219331 Database Design \& Programming Course}.
+\small This report is part of project work for \emph{01219331 Database Design \& Programming Course}. \\
+Department of Computer Engineering, Kasetsart University
 \end{center}
+}
+\maketitle
+\cleardoublepage
 
 \pagestyle{fancyplain}
 \fancyhf{}
-\lhead{ \fancyplain{}{Scheduler, Database Project Report} }
+\lhead{ \fancyplain{}{\emph{Scheduler, Database Project Report}} }
 \rhead{ \fancyplain{}{\today} }
 \rfoot{ \fancyplain{}{\thepage} }
 
@@ -62,5 +65,11 @@
 \input{../contents/5-3-example-data.tex}
 
 \input{../contents/6-example-queries.md}
+
+\input{../contents/7-conclusion.md}
+
+\begin{appendices}
+\input{../contents/a1-usage.tex}
+\end{appendices}
 
 \end{document}

@@ -46,6 +46,6 @@ The success of the work product of this application can be measured by its usefu
 
 Risks
 -----
-* If the application became very popular, it may run slower.
-* If the application became very popular, the database might be full.
+* If the application become very popular, it may run slower.
+* If the application become very popular, the database might be full.
 

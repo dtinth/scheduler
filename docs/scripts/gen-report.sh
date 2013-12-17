@@ -18,7 +18,7 @@ done
 for I in example-data/*
 do
   J=gen/contents/ex-`basename "$I" .csv`.tex
-  if [ "$I" -nt "$J" ]
+  if [ "$I" -nt "$J" -o scripts/process-data.rb -nt "$J" ]
   then
     ruby scripts/process-data.rb "$I" "$J"
   fi
