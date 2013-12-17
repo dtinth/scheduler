@@ -56,8 +56,8 @@ class ScheduleDao {
       $displayName = $course->displayName;
       if (empty($displayName)) $displayName = '';
     
-      $creditsLecture = 3; // TODO
-      $creditsLab     = 0; // TODO
+      $creditsLecture = $course->lecCredit;
+      $creditsLab     = $course->labCredit;
       
       $courseId = DbUtil::execute($statement, "insert course");
       
